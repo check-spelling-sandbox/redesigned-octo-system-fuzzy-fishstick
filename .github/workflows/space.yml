@@ -1,0 +1,26 @@
+name: space
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  space:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Look at file system
+        run: |
+          : Look at file system
+          frame() {
+            echo "<details><summary>$1</summary>" >> "GITHUB_STEP_SUMMARY"
+            tee -a "GITHUB_STEP_SUMMARY"
+            (
+              echo
+              echo "</details>"
+              echo"
+            ) >> "GITHUB_STEP_SUMMARY"
+          }
+          df -h | frame "df"
+          dpkg -l | frame "dpkg"
+          env | frame "env"
+          find / -xdev -type d | frame "folders"
