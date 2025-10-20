@@ -29,6 +29,8 @@ jobs:
             ) >> "$GITHUB_STEP_SUMMARY"
           }
           df -h | frame df
+          df -h $(mktemp) | frame 'temp'
+          df -h $RUNNER_TEMP | frame 'runner temp'
           dpkg -l | frame dpkg
           env | frame env
           echo "::group::dir"
