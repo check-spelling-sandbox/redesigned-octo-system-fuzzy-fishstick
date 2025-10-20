@@ -29,8 +29,11 @@ jobs:
             ) >> "$GITHUB_STEP_SUMMARY"
           }
           df -h | frame df
-          df -h $(mktemp) | frame 'temp'
+          df -h /tmp | frame tmp
+          df -h $(mktemp) | frame 'temp file'
           df -h $RUNNER_TEMP | frame 'runner temp'
+          mkdir /mnt/tmp; export TMPDIR=/mnt/tmp
+          df -h $(mktemp) | frame 'shimmed temp file'
           dpkg -l | frame dpkg
           env | frame env
           echo "::group::dir"
