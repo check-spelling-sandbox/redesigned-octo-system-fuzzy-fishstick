@@ -13,7 +13,9 @@ jobs:
           : Look at file system
           frame() {
             echo "<details><summary>$1</summary>" >> "$GITHUB_STEP_SUMMARY"
+            echo "::group::$1"
             tee -a "$GITHUB_STEP_SUMMARY"
+            echo "::endgroup::"
             (
               echo
               echo "</details>"
@@ -23,4 +25,6 @@ jobs:
           df -h | frame df
           dpkg -l | frame dpkg
           env | frame env
-          find / -xdev -type d | frame folders
+          echo "::group::dir"
+          find / -xdev -type d
+          echo "::endgroup::"
