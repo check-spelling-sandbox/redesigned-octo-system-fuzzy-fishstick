@@ -12,11 +12,17 @@ jobs:
         run: |
           : Look at file system
           frame() {
-            echo "<details><summary>$1</summary>" >> "$GITHUB_STEP_SUMMARY"
+            (
+              echo "<details><summary>$1</summary>"
+              echo
+              echo '```'
+            ) >> "$GITHUB_STEP_SUMMARY"
             echo "::group::$1"
             tee -a "$GITHUB_STEP_SUMMARY"
             echo "::endgroup::"
             (
+              echo
+              echo '```'
               echo
               echo "</details>"
               echo
