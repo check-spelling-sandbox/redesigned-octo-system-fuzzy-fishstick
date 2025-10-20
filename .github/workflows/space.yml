@@ -26,5 +26,5 @@ jobs:
           dpkg -l | frame dpkg
           env | frame env
           echo "::group::dir"
-          find / -xdev -type d
+          find / -maxdepth 6 -xdev -type d
           echo "::endgroup::"
