@@ -32,7 +32,8 @@ jobs:
           df -h /tmp | frame tmp
           df -h $(mktemp) | frame 'temp file'
           df -h $RUNNER_TEMP | frame 'runner temp'
-          mkdir /mnt/tmp; export TMPDIR=/mnt/tmp
+          sudo install -d -u $USER /mnt/tmp
+          export TMPDIR=/mnt/tmp
           df -h $(mktemp) | frame 'shimmed temp file'
           dpkg -l | frame dpkg
           env | frame env
